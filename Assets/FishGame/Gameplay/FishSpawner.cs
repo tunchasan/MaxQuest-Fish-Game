@@ -1,9 +1,10 @@
+using FishGame.Core.Fish;
 using UnityEngine;
 
-namespace FishGame
+namespace FishGame.Gameplay
 {
     public class FishSpawner : MonoBehaviour
     {
-        // TODO
+        [SerializeField] private Fish fishPrefabReference;
     }
 }

@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assembly-CSharp.csproj.DotSettings
+.idea/.idea.MaxQuest-Fish-Game/.idea/vcs.xml
+.idea/.idea.MaxQuest-Fish-Game/.idea/indexLayout.xml
+.idea/.idea.MaxQuest-Fish-Game/.idea/encodings.xml

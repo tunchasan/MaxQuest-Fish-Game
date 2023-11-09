@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace FishGame
+namespace FishGame.Gameplay
 {
     [CreateAssetMenu(fileName = "FishAssetContainer", menuName = "MaxQuest/FishAssetContainer", order = 1)]
     public class FishAssetContainer : ScriptableObject

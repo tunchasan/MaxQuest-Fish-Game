@@ -6,5 +6,6 @@ namespace FishGame.Model
     {
         public string Name;
         public Sprite Visual;
+        public float Speed;
     }
 }

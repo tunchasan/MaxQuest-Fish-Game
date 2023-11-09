@@ -1,8 +1,7 @@
-using System;
 using FishGame.Model;
 using UnityEngine;
 
-namespace FishGame
+namespace FishGame.Core.Fish
 {
     [RequireComponent(typeof(FishController))]
     public class Fish : MonoBehaviour
