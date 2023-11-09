@@ -6,14 +6,22 @@ namespace FishGame.Core.Fish
     [RequireComponent(typeof(FishMovement), typeof(FishRenderer))]
     public class FishController : MonoBehaviour
     {
-        [SerializeField] private FishMovement movement;
-        [SerializeField] private new FishRenderer renderer;
+        private FishMovement _movement;
+        private new FishRenderer _renderer;
+
+        private void Awake()
+        {
+            _movement = GetComponent<FishMovement>();
+            _renderer = GetComponent<FishRenderer>();
+        }
 
         public void ApplyData(FishModel data)
         {
             gameObject.name = data.Name;
-            movement.ApplyMovement(data.Speed);
-            renderer.ApplyRenderer(data.Visual);
+            transform.localScale = Vector3.one * data.Size;
+            
+            _movement.ApplyMovement(data.Speed);
+            _renderer.ApplyRenderer(data.Visual);
         }
     }
 }

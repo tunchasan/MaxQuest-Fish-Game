@@ -12,9 +12,11 @@ namespace FishGame
         private const string SpawnerAssetPath = "Prefabs/FishSpawner";
         private const string ContainerAssetPath = "SO/FishAssetContainer";
 
-        public Fish Fish { get; private set; }
-        public FishSpawner Spawner { get; private set; }
-        public FishAssetContainer AssetContainer { get; private set; }
+        public const int InitialFishCount = 3;
+
+        public Fish FishAsset { get; private set; }
+        public FishSpawner SpawnerAsset { get; private set; }
+        public FishAssetContainer ContainerAsset { get; private set; }
 
         private void Awake()
         {
@@ -34,7 +36,7 @@ namespace FishGame
             
             if (assetContainerReference != null)
             {
-                Fish = assetContainerReference;
+                FishAsset = assetContainerReference;
             }
 
             else
@@ -50,7 +52,7 @@ namespace FishGame
 
             if (spawnerAssetReference != null)
             {
-                Spawner = Instantiate(spawnerAssetReference);
+                SpawnerAsset = Instantiate(spawnerAssetReference);
             }
 
             else
@@ -66,7 +68,7 @@ namespace FishGame
             
             if (assetContainerReference != null)
             {
-                AssetContainer = assetContainerReference;
+                ContainerAsset = assetContainerReference;
             }
 
             else
