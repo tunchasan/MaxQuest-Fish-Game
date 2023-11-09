@@ -7,8 +7,6 @@ namespace FishGame.Gameplay
 {
     public class FishSpawner : MonoBehaviour
     {
-        private readonly RandomPositionGenerator _randomPositionGenerator = new();
-        
         private void Start()
         {
             Spawn();
@@ -19,7 +17,7 @@ namespace FishGame.Gameplay
             for (var i = 0; i < Main.Instance.Config.InitialFishCount; i++)
             {
                 var fishInstance = Instantiate(Main.Instance.FishAsset);
-                fishInstance.transform.position = _randomPositionGenerator.GetRandomPosition();
+                fishInstance.transform.position = RandomPositionGenerator.GetRandomPosition();
                 var fishAssets = Main.Instance.ContainerAsset.FishAssets;
 
                 fishInstance.SetData(new FishModel

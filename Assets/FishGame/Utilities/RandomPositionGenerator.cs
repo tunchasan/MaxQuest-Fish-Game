@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace FishGame.Utilities
 {
-    public class RandomPositionGenerator
+    public static class RandomPositionGenerator
     {
         private static readonly Vector2 Margin = new(100, 100);
 
-        public Vector2 GetRandomPosition()
+        public static Vector2 GetRandomPosition()
         {
             var spawnY = Random.Range(
                 Main.Instance.MainCamera.ScreenToWorldPoint(new Vector2(0, Margin.y)).y, 
