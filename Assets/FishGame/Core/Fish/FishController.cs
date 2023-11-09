@@ -7,7 +7,7 @@ namespace FishGame.Core.Fish
     public class FishController : MonoBehaviour
     {
         private FishMovement _movement;
-        private new FishRenderer _renderer;
+        private FishRenderer _renderer;
 
         private void Awake()
         {

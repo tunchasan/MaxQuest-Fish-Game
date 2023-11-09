@@ -1,4 +1,5 @@
 using FishGame.Model;
+using FishGame.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,9 +7,8 @@ namespace FishGame.Gameplay
 {
     public class FishSpawner : MonoBehaviour
     {
-        [Header("@References")]
-        [SerializeField] private Transform spawnerParent;
-
+        private readonly RandomPositionGenerator _randomPositionGenerator = new();
+        
         private void Start()
         {
             Spawn();
@@ -16,9 +16,10 @@ namespace FishGame.Gameplay
 
         private void Spawn()
         {
-            for (var i = 0; i < Main.InitialFishCount; i++)
+            for (var i = 0; i < Main.Instance.Config.InitialFishCount; i++)
             {
                 var fishInstance = Instantiate(Main.Instance.FishAsset);
+                fishInstance.transform.position = _randomPositionGenerator.GetRandomPosition();
                 var fishAssets = Main.Instance.ContainerAsset.FishAssets;
 
                 fishInstance.SetData(new FishModel
