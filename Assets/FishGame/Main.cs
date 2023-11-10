@@ -16,11 +16,6 @@ namespace FishGame
         public FishAssetContainer ContainerAsset { get; private set; }
         public Camera MainCamera { get; private set; }
 
-        private void Awake()
-        {
-            DontDestroyOnLoad(gameObject);
-        }
- 
         private void Start()
         {
             LoadCamera();

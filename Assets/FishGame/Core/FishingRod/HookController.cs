@@ -1,4 +1,5 @@
 using FishGame.Core.Fish;
+using FishGame.Gameplay.Managers;
 using UnityEngine;
 
 namespace FishGame.Core.FishingRod
@@ -13,6 +14,9 @@ namespace FishGame.Core.FishingRod
             if (other.TryGetComponent(out FishController fishController) && FishingRod.Instance.Status)
             {
                 fishController.OnCatchByHook(socket);
+                
+                // Increase hunted fish count
+                GameManager.Instance.OnReceiveHuntedFish();
             }
         }
     }

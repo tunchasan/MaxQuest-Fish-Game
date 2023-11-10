@@ -1,4 +1,5 @@
 using System.Collections;
+using FishGame.Gameplay.Managers;
 using FishGame.Utilities;
 using UnityEngine;
 
@@ -55,6 +56,9 @@ namespace FishGame.Core.FishingRod
                 yield return null; // Wait for the next frame
             }
 
+            // Increase hook attempt count
+            GameManager.Instance.OnReceiveAttempt();
+            
             StartCoroutine(PullFishingRod());
         }
         
