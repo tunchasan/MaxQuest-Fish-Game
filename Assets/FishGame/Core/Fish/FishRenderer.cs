@@ -25,5 +25,10 @@ namespace FishGame.Core.Fish
         {
             spriteRenderer.sortingOrder = order;
         }
+
+        public void SetColor(Color color)
+        {
+            spriteRenderer.color = color;
+        }
     }
 }

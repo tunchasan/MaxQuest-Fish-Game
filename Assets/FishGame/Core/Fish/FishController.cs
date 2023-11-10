@@ -28,6 +28,7 @@ namespace FishGame.Core.Fish
         {
             _movement.StopMovement();
             _renderer.SetSortingOrder(20);
+            _renderer.SetColor(new Color(.9F, .35F, 0F, .9F));
             
             var currentTransform = transform;
             currentTransform.SetParent(hook);

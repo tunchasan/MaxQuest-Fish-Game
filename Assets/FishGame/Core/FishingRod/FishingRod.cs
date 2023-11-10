@@ -41,7 +41,7 @@ namespace FishGame.Core.FishingRod
             while (elapsedTime < 1F)
             {
                 var spaceInterval = Mathf.Lerp(0F, -1F, elapsedTime);
-                lineRenderer.SetPosition(0, new Vector3(positionX, 5.5F, -1F));
+                lineRenderer.SetPosition(0, new Vector3(positionX, 5F, -1F));
                 
                 for (var i = 1; i < 50; i++)
                 {
