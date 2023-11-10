@@ -1,13 +1,18 @@
 using System.Collections;
+using FishGame.Utilities;
 using UnityEngine;
 
 namespace FishGame.Core.FishingRod
 {
-    public class FishingRod : MonoBehaviour
+    public class FishingRod : Singleton<FishingRod>
     {
         [Header("@References")]
         [SerializeField] private Transform hook;
         [SerializeField] private LineRenderer lineRenderer;
+
+        public bool Status { get; private set; }
+        
+        private bool _isThrowable = true;
 
         private void Update()
         {
@@ -19,38 +24,58 @@ namespace FishGame.Core.FishingRod
                           Input.mousePosition.y,
                         Main.Instance.MainCamera.nearClipPlane));
 
-                hook.gameObject.SetActive(true);
-                StartCoroutine(LerpValues(worldPosition.x));
+                StartCoroutine(ThrowFishingRod(worldPosition.x));
             }
         }
         
-        private IEnumerator LerpValues(float positionX)
+        private IEnumerator ThrowFishingRod(float positionX)
         {
+            if(!_isThrowable) yield break;
+            _isThrowable = false;
+
+            Status = true;
             var elapsedTime = 0F;
             lineRenderer.positionCount = 1;
             
             while (elapsedTime < 1F)
             {
                 var spaceInterval = Mathf.Lerp(0F, -1F, elapsedTime);
-                lineRenderer.SetPosition(0, new Vector3(positionX, 6F, -1F));
+                lineRenderer.SetPosition(0, new Vector3(positionX, 5.5F, -1F));
                 
                 for (var i = 1; i < 50; i++)
                 {
-                    if (lineRenderer.positionCount < 50)
-                    {
-                        lineRenderer.positionCount += 1;
-                    }
-                    
-                    lineRenderer.SetPosition(i, new Vector3(
-                        positionX, 
-                        Mathf.Lerp(lineRenderer.GetPosition(i - 1).y, lineRenderer.GetPosition(i - 1).y + spaceInterval / Random.Range(5F, 8F), elapsedTime), 
-                        -1));
+                    if (lineRenderer.positionCount < 50) { lineRenderer.positionCount += 1; }
+                    var position = lineRenderer.GetPosition(i - 1);
+                    var lerpPosition = Mathf.Lerp(position.y, position.y + spaceInterval / Random.Range(5F, 8F),elapsedTime);
+                    lineRenderer.SetPosition(i, new Vector3(positionX, lerpPosition, -1));
                 }
 
                 hook.position = lineRenderer.GetPosition(49);
                 elapsedTime += Time.deltaTime * 2F;
                 yield return null; // Wait for the next frame
             }
+
+            StartCoroutine(PullFishingRod());
+        }
+        
+        private IEnumerator PullFishingRod()
+        {
+            var elapsedTime = 0F;
+            
+            while (elapsedTime < .1F)
+            {
+                for (var i = 1; i < 50; i++)
+                {
+                    lineRenderer.SetPosition(i, Vector3.Lerp(lineRenderer.GetPosition(i), lineRenderer.GetPosition(0), elapsedTime));
+                }
+
+                hook.position = lineRenderer.GetPosition(49);
+                elapsedTime += Time.deltaTime / 5F;
+                yield return null; // Wait for the next frame
+            }
+
+            Status = false;
+            _isThrowable = true;
         }
     }
 }

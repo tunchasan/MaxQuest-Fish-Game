@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1634d7376a804d3da35fa44dafe3faa6, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
-  <InitialFishCount>k__BackingField: 50
+  <InitialFishCount>k__BackingField: 20
   <FishAssetPath>k__BackingField: Prefabs/Fish
   <SpawnerAssetPath>k__BackingField: Prefabs/FishSpawner
+  <FishingRodAssetPath>k__BackingField: Prefabs/FishingRod
   <ContainerAssetPath>k__BackingField: SO/FishAssetContainer
