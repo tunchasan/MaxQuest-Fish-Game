@@ -23,5 +23,15 @@ namespace FishGame.Core.Fish
             _movement.ApplyMovement(data.Speed);
             _renderer.ApplyRenderer(data.Visual);
         }
+        
+        public void OnCatchByHook(Transform hook)
+        {
+            _movement.StopMovement();
+            _renderer.SetSortingOrder(20);
+            
+            var currentTransform = transform;
+            currentTransform.SetParent(hook);
+            currentTransform.localPosition = hook.localPosition;
+        }
     }
 }

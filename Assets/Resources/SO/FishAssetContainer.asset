@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: FishAssetContainer
   m_EditorClassIdentifier: 
   <FishAssets>k__BackingField:
-  - {fileID: 21300000, guid: 11da035127fb84425ba639ebf8829a13, type: 3}
-  - {fileID: 21300000, guid: 1c803cb4c06d94634816ac7ba55fed8b, type: 3}
-  - {fileID: 21300000, guid: 64401aa73fe17400d9a17bdcd58535de, type: 3}
-  - {fileID: 21300000, guid: 790e656902a1d411a920f28fd978a8e4, type: 3}
+  - {fileID: 21300000, guid: ee1c4fde82bb448a48878c6f6f95676b, type: 3}
+  - {fileID: 21300000, guid: 2de6620c2ed044338b3b633a6729281c, type: 3}
+  - {fileID: 21300000, guid: 915a6d9cf0ea74d98a29821f7859b33a, type: 3}
+  - {fileID: 21300000, guid: fcc73e6916fdf40bca333707e5836c75, type: 3}
   - {fileID: 21300000, guid: a882752ab71344b69bf2e6ddd178927a, type: 3}
   - {fileID: 21300000, guid: 0238da7e35d9144cf8f1a35a80aef15f, type: 3}
   - {fileID: 21300000, guid: 0d067192f4e9142848774d4352d841a4, type: 3}

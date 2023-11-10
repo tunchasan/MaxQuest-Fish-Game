@@ -10,5 +10,20 @@ namespace FishGame.Core.Fish
         {
             spriteRenderer.sprite = visual;
         }
+
+        public void SetFlipX(bool status)
+        {
+            spriteRenderer.flipX = status;
+        }
+        
+        public void SetFlipY(bool status)
+        {
+            spriteRenderer.flipY = status;
+        }
+
+        public void SetSortingOrder(int order)
+        {
+            spriteRenderer.sortingOrder = order;
+        }
     }
 }

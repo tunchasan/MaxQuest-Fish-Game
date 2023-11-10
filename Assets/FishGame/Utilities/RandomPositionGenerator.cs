@@ -4,7 +4,7 @@ namespace FishGame.Utilities
 {
     public static class RandomPositionGenerator
     {
-        private static readonly Vector2 Margin = new(100, 100);
+        private static readonly Vector2 Margin = new(-250, -250);
 
         public static Vector2 GetRandomPosition()
         {

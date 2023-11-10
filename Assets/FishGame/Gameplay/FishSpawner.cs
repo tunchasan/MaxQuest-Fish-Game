@@ -19,12 +19,13 @@ namespace FishGame.Gameplay
                 var fishInstance = Instantiate(Main.Instance.FishAsset);
                 fishInstance.transform.position = RandomPositionGenerator.GetRandomPosition();
                 var fishAssets = Main.Instance.ContainerAsset.FishAssets;
-
+                var fishSize = Random.Range(.25F, .75F);
+                
                 fishInstance.SetData(new FishModel
                 {
                     Name = $"Fish [Id {i}]",
-                    Speed = Random.Range(.5F, 1.5F),
-                    Size = Random.Range(.6F, .9F),
+                    Size = fishSize,
+                    Speed = fishSize * 3F,
                     Visual = fishAssets[Random.Range(0, fishAssets.Length)]
                 });
             }

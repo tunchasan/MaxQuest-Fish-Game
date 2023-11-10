@@ -1,5 +1,6 @@
 using System;
 using FishGame.Core.Fish;
+using FishGame.Core.FishingRod;
 using FishGame.Gameplay;
 using FishGame.Utilities;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace FishGame
         public Config Config { get; private set; }
         public Fish FishAsset { get; private set; }
         public FishSpawner SpawnerAsset { get; private set; }
+        public FishingRod FishingRodAsset { get; private set; }
         public FishAssetContainer ContainerAsset { get; private set; }
         public Camera MainCamera { get; private set; }
 
@@ -25,6 +27,7 @@ namespace FishGame
             LoadConfigAsset();
             LoadFishAsset();
             LoadSpawnerAsset();
+            LoadFishingRodAsset();
             LoadAssetContainerAsset();
         }
 
@@ -40,11 +43,11 @@ namespace FishGame
 
         private void LoadConfigAsset()
         {
-            var assetContainerReference = Resources.Load<Config>("SO/Config");
+            var configAssetReference = Resources.Load<Config>("SO/Config");
             
-            if (assetContainerReference != null)
+            if (configAssetReference != null)
             {
-                Config = assetContainerReference;
+                Config = configAssetReference;
             }
 
             else
@@ -55,11 +58,11 @@ namespace FishGame
 
         private void LoadFishAsset()
         {
-            var assetContainerReference = Resources.Load<Fish>(Config.FishAssetPath);
+            var fishAssetReference = Resources.Load<Fish>(Config.FishAssetPath);
             
-            if (assetContainerReference != null)
+            if (fishAssetReference != null)
             {
-                FishAsset = assetContainerReference;
+                FishAsset = fishAssetReference;
             }
 
             else
@@ -80,6 +83,21 @@ namespace FishGame
             else
             {
                 throw new NullReferenceException("[FishGame::Main::LoadSpawner] FishSpawner couldn't be loaded from Resources folder!");
+            }
+        }
+        
+        private void LoadFishingRodAsset()
+        {
+            var fishingRodAssetReference = Resources.Load<FishingRod>(Config.FishingRodAssetPath);
+            
+            if (fishingRodAssetReference != null)
+            {
+                FishingRodAsset = Instantiate(fishingRodAssetReference);;
+            }
+
+            else
+            {
+                throw new NullReferenceException("[FishGame::Main::LoadFishingRodAsset] FishingRod couldn't be loaded from Resources folder!");
             }
         }
 
