@@ -5,7 +5,7 @@ namespace FishGame.Gameplay.Managers
     public class RTPManager : Singleton<RTPManager>
     {
         private const float Rtp = .3F;
-        private const int RtpMultiplier = 18;
+        private const int RtpMultiplier = 30;
 
         public float FishHauntChanceRate()
         {

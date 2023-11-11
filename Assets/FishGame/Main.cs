@@ -20,6 +20,7 @@ namespace FishGame
         {
             LoadCamera();
             LoadConfigAsset();
+            LoadManagerAsset();
             LoadFishAsset();
             LoadSpawnerAsset();
             LoadFishingRodAsset();
@@ -48,6 +49,21 @@ namespace FishGame
             else
             {
                 throw new NullReferenceException("[FishGame::Main::LoadConfigAsset] Config couldn't be loaded from Resources folder!");
+            }
+        }
+        
+        private void LoadManagerAsset()
+        {
+            var managerAssetReference = Resources.Load<GameObject>(Config.ManagersAssetPath);
+            
+            if (managerAssetReference != null)
+            {
+                Instantiate(managerAssetReference);
+            }
+
+            else
+            {
+                throw new NullReferenceException("[FishGame::Main::LoadManagerAsset] Managers couldn't be loaded from Resources folder!");
             }
         }
 
