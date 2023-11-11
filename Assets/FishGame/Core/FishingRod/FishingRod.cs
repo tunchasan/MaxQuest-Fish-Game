@@ -19,17 +19,25 @@ namespace FishGame.Core.FishingRod
         {
             if (Input.GetMouseButtonDown(0))
             {
-                var worldPosition = Main.Instance.MainCamera.ScreenToWorldPoint(
-                    new Vector3(
-                          Input.mousePosition.x,
-                          Input.mousePosition.y,
-                        Main.Instance.MainCamera.nearClipPlane));
+                StartCoroutine(ThrowFishingRodTo());
+            }
 
-                StartCoroutine(ThrowFishingRod(worldPosition.x));
+            if (_isThrowable)
+            {
+                FollowCursor();
             }
         }
-        
-        private IEnumerator ThrowFishingRod(float positionX)
+
+        private void FollowCursor()
+        {
+            var currentPosition = transform.position;
+            var mouseWorldPos = Main.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            var positionX = Mathf.Lerp(currentPosition.x, mouseWorldPos.x, Time.deltaTime * 3F);
+            positionX = Mathf.Clamp(positionX, -8F, 8F);
+            transform.position = new Vector3(positionX, currentPosition.y, currentPosition.z);
+        }
+
+        private IEnumerator ThrowFishingRodTo()
         {
             if(!_isThrowable) yield break;
             _isThrowable = false;
@@ -37,7 +45,8 @@ namespace FishGame.Core.FishingRod
             Status = true;
             var elapsedTime = 0F;
             lineRenderer.positionCount = 1;
-            
+            var positionX = transform.position.x;
+
             while (elapsedTime < 1F)
             {
                 var spaceInterval = Mathf.Lerp(0F, -1F, elapsedTime);
@@ -78,6 +87,7 @@ namespace FishGame.Core.FishingRod
                 yield return null; // Wait for the next frame
             }
 
+            lineRenderer.positionCount = 0;
             Status = false;
             _isThrowable = true;
         }

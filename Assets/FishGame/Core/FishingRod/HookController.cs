@@ -13,10 +13,13 @@ namespace FishGame.Core.FishingRod
         {
             if (other.TryGetComponent(out FishController fishController) && FishingRod.Instance.Status)
             {
-                fishController.OnCatchByHook(socket);
+                if (Random.Range(0F, 1F) > 1F - RTPManager.Instance.FishHauntChanceRate())
+                {
+                    fishController.OnCatchByHook(socket);
                 
-                // Increase hunted fish count
-                GameManager.Instance.OnReceiveHuntedFish();
+                    // Increase hunted fish count
+                    GameManager.Instance.OnReceiveHuntedFish();
+                }
             }
         }
     }

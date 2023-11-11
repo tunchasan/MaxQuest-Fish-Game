@@ -11,6 +11,7 @@ namespace FishGame.Gameplay.Managers
         [SerializeField] private Button resetButton;
         [SerializeField] private TextMeshProUGUI attemptCounterText;
         [SerializeField] private TextMeshProUGUI huntedFishCounterText;
+        [SerializeField] private TextMeshProUGUI rtpInfoText;
 
         private void Start()
         {
@@ -20,11 +21,19 @@ namespace FishGame.Gameplay.Managers
         public void UpdateAttemptCounterText(int count)
         {
             attemptCounterText.text = $"x{count}";
+            UpdateRtpInfoText();
         }
         
         public void HuntedFishCounterText(int count)
         {
             huntedFishCounterText.text = $"x{count}";
+            UpdateRtpInfoText();
+        }
+
+        private void UpdateRtpInfoText()
+        {
+            var rate = (float)GameManager.Instance.HuntedFishCount / GameManager.Instance.AttemptCount;
+            rtpInfoText.text = $"RTP : {rate:F1}";
         }
 
         private void OnClickResetButton()
